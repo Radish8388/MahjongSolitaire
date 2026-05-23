@@ -1,0 +1,389 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>images\mahjong.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="backup 5-22-26a\**" />
+    <Compile Remove="backup 5-22-26b\**" />
+    <Compile Remove="backup 5-22-26\**" />
+    <EmbeddedResource Remove="backup 5-22-26a\**" />
+    <EmbeddedResource Remove="backup 5-22-26b\**" />
+    <EmbeddedResource Remove="backup 5-22-26\**" />
+    <None Remove="backup 5-22-26a\**" />
+    <None Remove="backup 5-22-26b\**" />
+    <None Remove="backup 5-22-26\**" />
+    <Page Remove="backup 5-22-26a\**" />
+    <Page Remove="backup 5-22-26b\**" />
+    <Page Remove="backup 5-22-26\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="images\bamboo1b.png" />
+    <None Remove="images\bamboo1c.png" />
+    <None Remove="images\bamboo2b.png" />
+    <None Remove="images\bamboo2c.png" />
+    <None Remove="images\bamboo3b.png" />
+    <None Remove="images\bamboo3c.png" />
+    <None Remove="images\bamboo4b.png" />
+    <None Remove="images\bamboo4c.png" />
+    <None Remove="images\bamboo5b.png" />
+    <None Remove="images\bamboo5c.png" />
+    <None Remove="images\bamboo6b.png" />
+    <None Remove="images\bamboo6c.png" />
+    <None Remove="images\bamboo7b.png" />
+    <None Remove="images\bamboo7c.png" />
+    <None Remove="images\bamboo8b.png" />
+    <None Remove="images\bamboo8c.png" />
+    <None Remove="images\bamboo9b.png" />
+    <None Remove="images\bamboo9c.png" />
+    <None Remove="images\character1b.png" />
+    <None Remove="images\character1c.png" />
+    <None Remove="images\character2b.png" />
+    <None Remove="images\character2c.png" />
+    <None Remove="images\character3b.png" />
+    <None Remove="images\character3c.png" />
+    <None Remove="images\character4b.png" />
+    <None Remove="images\character4c.png" />
+    <None Remove="images\character5b.png" />
+    <None Remove="images\character5c.png" />
+    <None Remove="images\character6b.png" />
+    <None Remove="images\character6c.png" />
+    <None Remove="images\character7b.png" />
+    <None Remove="images\character7c.png" />
+    <None Remove="images\character8b.png" />
+    <None Remove="images\character8c.png" />
+    <None Remove="images\character9b.png" />
+    <None Remove="images\character9c.png" />
+    <None Remove="images\circle1b.png" />
+    <None Remove="images\circle1c.png" />
+    <None Remove="images\circle2b.png" />
+    <None Remove="images\circle2c.png" />
+    <None Remove="images\circle3b.png" />
+    <None Remove="images\circle3c.png" />
+    <None Remove="images\circle4b.png" />
+    <None Remove="images\circle4c.png" />
+    <None Remove="images\circle5b.png" />
+    <None Remove="images\circle5c.png" />
+    <None Remove="images\circle6b.png" />
+    <None Remove="images\circle6c.png" />
+    <None Remove="images\circle7b.png" />
+    <None Remove="images\circle7c.png" />
+    <None Remove="images\circle8b.png" />
+    <None Remove="images\circle8c.png" />
+    <None Remove="images\circle9b.png" />
+    <None Remove="images\circle9c.png" />
+    <None Remove="images\dragon1b.png" />
+    <None Remove="images\dragon1c.png" />
+    <None Remove="images\dragon2b.png" />
+    <None Remove="images\dragon2c.png" />
+    <None Remove="images\dragon3b.png" />
+    <None Remove="images\dragon3c.png" />
+    <None Remove="images\flower1b.png" />
+    <None Remove="images\flower1c.png" />
+    <None Remove="images\flower2b.png" />
+    <None Remove="images\flower2c.png" />
+    <None Remove="images\flower3b.png" />
+    <None Remove="images\flower3c.png" />
+    <None Remove="images\flower4b.png" />
+    <None Remove="images\flower4c.png" />
+    <None Remove="images\mahjong.ico" />
+    <None Remove="images\season1b.png" />
+    <None Remove="images\season1c.png" />
+    <None Remove="images\season2b.png" />
+    <None Remove="images\season2c.png" />
+    <None Remove="images\season3b.png" />
+    <None Remove="images\season3c.png" />
+    <None Remove="images\season4b.png" />
+    <None Remove="images\season4c.png" />
+    <None Remove="images\soundOff.png" />
+    <None Remove="images\soundOn.png" />
+    <None Remove="images\wind1b.png" />
+    <None Remove="images\wind1c.png" />
+    <None Remove="images\wind2b.png" />
+    <None Remove="images\wind2c.png" />
+    <None Remove="images\wind3b.png" />
+    <None Remove="images\wind3c.png" />
+    <None Remove="images\wind4b.png" />
+    <None Remove="images\wind4c.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\mahjong.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio.Midi" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\bamboo1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo5b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo5c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo6b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo6c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo7b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo7c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo8b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo8c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo9b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\bamboo9c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character5b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character5c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character6b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character6c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character7b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character7c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character8b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character8c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character9b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\character9c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle5b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle5c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle6b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle6c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle7b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle7c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle8b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle8c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle9b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\circle9c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\dragon3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\flower4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mahjong.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\season4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\soundOff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\soundOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind1b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind1c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind2b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind2c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind3b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind3c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind4b.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\wind4c.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
