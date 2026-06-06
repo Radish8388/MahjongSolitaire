@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>images\mahjong.ico</ApplicationIcon>
+    <ApplicationIcon>images\mahjong3.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -115,7 +115,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="images\mahjong.ico" />
+    <Content Include="images\mahjong3.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -332,7 +332,7 @@ namespace MahjongSolitaire
             _game.RemoveTile(layer, row, col);
             Table.Children.Remove(t1.TileImage);
             Table.Children.Remove(t2.TileImage);
-            PlaySound(1, 49, 100);
+            PlaySound(115, 49, 100);
             CountMatches();
         }
 
