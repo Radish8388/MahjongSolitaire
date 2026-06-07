@@ -1,9 +1,9 @@
 [Setup]
 AppName=Mahjong Solitaire
-AppVersion=1.0.1
+AppVersion=1.0.2
 DefaultDirName={autopf}\Radish\MahjongSolitaire
 DefaultGroupName=Radish
-SetupIconFile=images\mahjong3.ico
+SetupIconFile=images\mahjong4.ico
 UninstallDisplayIcon={app}\MahjongSolitaire.exe
 LicenseFile=LICENSE.txt
 OutputBaseFilename=MahjongSolitaireSetup
@@ -14,7 +14,7 @@ AppPublisherURL=https://radish-vert.vercel.app
 AppId={{2f7e50be-4708-4963-bbc3-6dbf3a799261}
 
 [Files]
-Source: "bin\Release\net10.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: recursesubdirs
+Source: "bin\Release\net10.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{group}\MahjongSolitaire"; Filename: "{app}\MahjongSolitaire.exe"
