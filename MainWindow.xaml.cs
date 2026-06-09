@@ -38,6 +38,15 @@ namespace MahjongSolitaire
         #region events
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // load the properties from disk
+            Properties.Settings.Default.Reload();
+            bool soundOn = Properties.Settings.Default.SoundOn;
+            if (soundOn == false) Sound_Click(this, new RoutedEventArgs());
+            this.Left = Properties.Settings.Default.WindowLeft;
+            this.Top = Properties.Settings.Default.WindowTop;
+            this.Width = Properties.Settings.Default.WindowWidth;
+            this.Height = Properties.Settings.Default.WindowHeight;
+
             double screenWidth = SystemParameters.WorkArea.Width;
             double screenHeight = SystemParameters.WorkArea.Height;
 
@@ -421,5 +430,14 @@ namespace MahjongSolitaire
             CountMatches();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.WindowLeft = this.Left;
+            Properties.Settings.Default.WindowTop = this.Top;
+            Properties.Settings.Default.WindowWidth = this.Width;
+            Properties.Settings.Default.WindowHeight = this.Height;
+            Properties.Settings.Default.SoundOn = _soundOn;
+            Properties.Settings.Default.Save();
+        }
     }
 }
