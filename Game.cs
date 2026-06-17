@@ -131,5 +131,15 @@ namespace MahjongSolitaire
         {
             board[layer, row, col] = 0;
         }
+
+        public int TilesRemaining()
+        {
+            int count = 0;
+            for (int layer = 0; layer < 5; layer++)
+                for (int row = 0; row < 9; row++)
+                    for (int col = 0; col < 16; col++)
+                        count += board[layer, row, col];
+            return count;
+        }
     }
 }

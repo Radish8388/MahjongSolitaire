@@ -1,6 +1,8 @@
-﻿// Must install NuGet package NAudio.Midi
-using AirHockey;
+﻿// Must install NuGet packages NAudio.Midi and NAudio
+//using AirHockey;
 using NAudio.SoundFont;
+using NAudio.Wave;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -405,6 +407,9 @@ namespace MahjongSolitaire
 
             // display the count
             MatchesCount.Text = $"Matches: {matches}";
+
+            if (_game.TilesRemaining() <= 0)
+                AnnounceWinner();
         }
 
         private void ShuffleRemainingTiles()
@@ -422,12 +427,15 @@ namespace MahjongSolitaire
                 }
             }
 
-            // shuffle the list
-            Shuffle(remainingTiles);
+            if (remainingTiles.Count > 0)
+            {
+                // shuffle the list
+                Shuffle(remainingTiles);
 
-            // redraw the tiles
-            Redraw(remainingTiles);
-            CountMatches();
+                // redraw the tiles
+                Redraw(remainingTiles);
+                CountMatches();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -438,6 +446,32 @@ namespace MahjongSolitaire
             Properties.Settings.Default.WindowHeight = this.Height;
             Properties.Settings.Default.SoundOn = _soundOn;
             Properties.Settings.Default.Save();
+        }
+
+        private void AnnounceWinner()
+        {
+            string resourcePath = "pack://application:,,,/MahjongSolitaire;component/sounds/applause.wav";
+            if (_soundOn)
+            {
+                Task.Run(() =>
+                {
+                    var uri = new Uri(resourcePath, UriKind.Absolute);
+                    var resourceStream = Application.GetResourceStream(uri);
+                    using (var reader = new WaveFileReader(resourceStream.Stream))
+                    using (var output = new WaveOutEvent())
+                    {
+                        output.Init(reader);
+                        output.Play();
+                        while (output.PlaybackState == PlaybackState.Playing)
+                            System.Threading.Thread.Sleep(100);
+                    }
+                });
+            }
+
+            WinnerWindow dialog = new WinnerWindow();
+            dialog.Owner = this;
+            bool? result = dialog.ShowDialog();
+            //MessageBox.Show("Congratulations, you won", "Game Over", MessageBoxButton.OK, MessageBoxImage.None);
         }
     }
 }
