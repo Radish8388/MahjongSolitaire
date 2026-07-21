@@ -18,11 +18,11 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="New Game" FontSize="12" Width="80" Margin="15,0,15,0" Click="NewGameButton_Click"/>
             <Button Content="Shuffle" FontSize="12" Width="80" Margin="15,0,15,0" Click="ShuffleButton_Click"/>
+            <Button Content="Hint" FontSize="12" Width="80" Margin="15,0,15,0" Click="HintButton_Click"/>
             <Button x:Name="SoundButton" BorderThickness="0" Click="Sound_Click" Background="White" Margin="15,0,15,0">
                 <Image x:Name="SoundImage" Source="/images/soundOn.png" Width="30" Height="30"/>
             </Button>
             <TextBlock x:Name="MatchesCount" Text="Matches: 0" FontSize="18" Margin="15,0,15,0" Foreground="Red"/>
-
         </StackPanel>
         <Canvas x:Name="Table"
                 Grid.Row="1"

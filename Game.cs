@@ -7,6 +7,7 @@ namespace MahjongSolitaire
     class Game
     {
         int[,,] board = new int[5, 9, 16];
+        int[,,] layout = new int[5, 9, 16];
 
         public void NewGame()
         {
@@ -71,6 +72,9 @@ namespace MahjongSolitaire
 
             // layer 4
             board[4, 8, 15] = 1;
+
+            // create layout
+            layout = (int[,,])board.Clone();
         }
 
         public bool IsOccupied(int layer, int row, int col)
@@ -83,6 +87,21 @@ namespace MahjongSolitaire
                 return false;
 
             if (board[layer, row, col] == 1)
+                return true;
+            else
+                return false;
+        }
+
+        public bool IsInLayout(int layer, int row, int col)
+        {
+            if (layer < 0 || layer > 4)
+                return false;
+            if (row < 0 || row > 8)
+                return false;
+            if (col < 0 || col > 15)
+                return false;
+
+            if (layout[layer, row, col] == 1)
                 return true;
             else
                 return false;

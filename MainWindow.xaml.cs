@@ -26,6 +26,8 @@ namespace MahjongSolitaire
         double _tileWidth = 110;
         double _tileHeight = 151;
         double _tileSide = 15;
+        double _marginTop = 10;
+        double _marginLeft = 10;
         bool _tilesLoaded = false;
         List<Tile> _tiles = new List<Tile>();
         Game _game = new Game();
@@ -42,6 +44,15 @@ namespace MahjongSolitaire
         {
             // load the properties from disk
             Properties.Settings.Default.Reload();
+
+            // check for upgrade
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             bool soundOn = Properties.Settings.Default.SoundOn;
             if (soundOn == false) Sound_Click(this, new RoutedEventArgs());
             this.Left = Properties.Settings.Default.WindowLeft;
@@ -65,6 +76,9 @@ namespace MahjongSolitaire
                 this.Left = screenWidth - this.Width;
             if (this.Top + this.Height > screenHeight)
                 this.Top = screenHeight - this.Height;
+
+            if (Properties.Settings.Default.WindowState == "Maximized")
+                this.WindowState = WindowState.Maximized;
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
@@ -89,17 +103,36 @@ namespace MahjongSolitaire
 
         private void Table_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            double tw = Table.ActualWidth;
-            double th = Table.ActualHeight;
-            double w1 = (tw - 20) / (15 + 0.0364);
-            double w2 = (th - 20) / (8 * 1.3727 + 0.1364);
+            double tablewidth = Table.ActualWidth;
+            double tableheight = Table.ActualHeight;
+            double factor1 = 15 + 0.0364;
+            double factor2 = 8 * 1.3727 + 0.1364;
+            double w1 = (tablewidth - 20) / factor1;
+            double w2 = (tableheight - 20) / factor2;
             _tileWidth = Math.Min(w1, w2);
             _tileWidth = Math.Max(0, _tileWidth);
+            _marginLeft = (tablewidth - factor1 * _tileWidth) / 2.0;
+            _marginTop = (tableheight - factor2 * _tileWidth) / 2.0;
             _tileHeight = _tileWidth * 1.3727;
             _tileSide = 0.1364 * _tileWidth;
 
             if (_tilesLoaded)
-                Redraw(_tiles);
+            {
+                List<Tile> remainingTiles = new List<Tile>();
+                int i;
+
+                // create a list of remaining tiles
+                for (i = 0; i < _tiles.Count; i++)
+                {
+                    _tiles[i].GetPosition(out int layer, out int row, out int col);
+                    if (_game.IsOccupied(layer, row, col))
+                    {
+                        remainingTiles.Add(_tiles[i]);
+                    }
+                }
+
+                Redraw(remainingTiles);
+            }
         }
 
         private void Tile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -226,8 +259,8 @@ namespace MahjongSolitaire
                     list[tileNum].SetPosition(layer, row, col);
                     img.Width = _tileWidth + _tileSide;
                     img.Height = _tileHeight + _tileSide;
-                    x = col * _tileWidth + 10;
-                    y = 3.5 * _tileHeight + 10;
+                    x = col * _tileWidth + _marginLeft;
+                    y = 3.5 * _tileHeight + _marginTop;
                     Canvas.SetLeft(img, x);
                     Canvas.SetTop(img, y);
                     Table.Children.Add(img);
@@ -245,8 +278,8 @@ namespace MahjongSolitaire
                     list[tileNum].SetPosition(layer, row, col);
                     img.Width = _tileWidth + _tileSide;
                     img.Height = _tileHeight + _tileSide;
-                    x = col * _tileWidth + 10;
-                    y = 3.5 * _tileHeight + 10;
+                    x = col * _tileWidth + _marginLeft;
+                    y = 3.5 * _tileHeight + _marginTop;
                     Canvas.SetLeft(img, x);
                     Canvas.SetTop(img, y);
                     Table.Children.Add(img);
@@ -258,6 +291,7 @@ namespace MahjongSolitaire
             for (layer = 0; layer < 4; layer++)
                 for (row = 0; row < 8; row++)
                     for (col = 14; col >= 0; col--)
+                    {
                         if (_game.IsOccupied(layer, row, col))
                         {
                             img = list[tileNum].TileImage;
@@ -265,15 +299,16 @@ namespace MahjongSolitaire
                             list[tileNum].SetPosition(layer, row, col);
                             img.Width = _tileWidth + _tileSide;
                             img.Height = _tileHeight + _tileSide;
-                            x = col * _tileWidth + 10;
+                            x = col * _tileWidth + _marginLeft;
                             x += layer * _tileSide;
-                            y = row * _tileHeight + 10;
+                            y = row * _tileHeight + _marginTop;
                             y -= layer * _tileSide;
                             Canvas.SetLeft(img, x);
                             Canvas.SetTop(img, y);
                             Table.Children.Add(img);
                             tileNum++;
                         }
+                    }
 
             // draw more offset tiles
             layer = 0;
@@ -287,8 +322,8 @@ namespace MahjongSolitaire
                     list[tileNum].SetPosition(layer, row, col);
                     img.Width = _tileWidth + _tileSide;
                     img.Height = _tileHeight + _tileSide;
-                    x = col * _tileWidth + 10;
-                    y = 3.5 * _tileHeight + 10;
+                    x = col * _tileWidth + _marginLeft;
+                    y = 3.5 * _tileHeight + _marginTop;
                     Canvas.SetLeft(img, x);
                     Canvas.SetTop(img, y);
                     Table.Children.Add(img);
@@ -306,9 +341,9 @@ namespace MahjongSolitaire
                     list[tileNum].SetPosition(layer, row, col);
                     img.Width = _tileWidth + _tileSide;
                     img.Height = _tileHeight + _tileSide;
-                    x = 6.5 * _tileWidth + 10;
+                    x = 6.5 * _tileWidth + _marginLeft;
                     x += layer * _tileSide;
-                    y = 3.5 * _tileHeight + 10;
+                    y = 3.5 * _tileHeight + _marginTop;
                     y -= layer * _tileSide;
                     Canvas.SetLeft(img, x);
                     Canvas.SetTop(img, y);
@@ -440,10 +475,14 @@ namespace MahjongSolitaire
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.WindowLeft = this.Left;
-            Properties.Settings.Default.WindowTop = this.Top;
-            Properties.Settings.Default.WindowWidth = this.Width;
-            Properties.Settings.Default.WindowHeight = this.Height;
+            Properties.Settings.Default.WindowState = this.WindowState.ToString();
+            if (this.WindowState == WindowState.Normal)
+            {
+                Properties.Settings.Default.WindowLeft = this.Left;
+                Properties.Settings.Default.WindowTop = this.Top;
+                Properties.Settings.Default.WindowWidth = this.Width;
+                Properties.Settings.Default.WindowHeight = this.Height;
+            }
             Properties.Settings.Default.SoundOn = _soundOn;
             Properties.Settings.Default.Save();
         }
@@ -472,6 +511,11 @@ namespace MahjongSolitaire
             dialog.Owner = this;
             bool? result = dialog.ShowDialog();
             //MessageBox.Show("Congratulations, you won", "Game Over", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
+        private void HintButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
