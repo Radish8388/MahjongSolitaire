@@ -1,6 +1,6 @@
 [Setup]
 AppName=Mahjong Solitaire
-AppVersion=1.0.5
+AppVersion=1.0.6
 DefaultDirName={autopf}\Radish\MahjongSolitaire
 DefaultGroupName=Radish
 SetupIconFile=images\mahjong4.ico

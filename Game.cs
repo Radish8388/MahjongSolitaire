@@ -130,12 +130,12 @@ namespace MahjongSolitaire
 
             // check tiles to the right of 0, 8, 0
             if (layer == 0 && (row == 3 || row == 4) && col == 1)
-                if (IsOccupied(0, 8, 0))
+                if (IsOccupied(0, 8, 0) && IsOccupied(layer, row, col + 1))
                     return false;
 
             // check tiles to the left of 0, 8, 13
             if (layer == 0 && (row == 3 || row == 4) && col == 12)
-                if (IsOccupied(0, 8, 13))
+                if (IsOccupied(0, 8, 13) && IsOccupied(layer, row, col - 1))
                     return false;
 
             // check all of layer 3

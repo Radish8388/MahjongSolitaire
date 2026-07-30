@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>images\mahjong4.ico</ApplicationIcon>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <Company>Radish</Company>
     <Product>Mahjong Solitaire</Product>
     <Copyright>© 2026 Radish</Copyright>
