@@ -17,15 +17,23 @@
     <Compile Remove="backup 5-22-26a\**" />
     <Compile Remove="backup 5-22-26b\**" />
     <Compile Remove="backup 5-22-26\**" />
+    <Compile Remove="backup-7-21-26\**" />
+    <Compile Remove="backup-7-29-26\**" />
     <EmbeddedResource Remove="backup 5-22-26a\**" />
     <EmbeddedResource Remove="backup 5-22-26b\**" />
     <EmbeddedResource Remove="backup 5-22-26\**" />
+    <EmbeddedResource Remove="backup-7-21-26\**" />
+    <EmbeddedResource Remove="backup-7-29-26\**" />
     <None Remove="backup 5-22-26a\**" />
     <None Remove="backup 5-22-26b\**" />
     <None Remove="backup 5-22-26\**" />
+    <None Remove="backup-7-21-26\**" />
+    <None Remove="backup-7-29-26\**" />
     <Page Remove="backup 5-22-26a\**" />
     <Page Remove="backup 5-22-26b\**" />
     <Page Remove="backup 5-22-26\**" />
+    <Page Remove="backup-7-21-26\**" />
+    <Page Remove="backup-7-29-26\**" />
   </ItemGroup>
 
   <ItemGroup>

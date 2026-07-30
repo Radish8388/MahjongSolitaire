@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MahjongSolitaire
 {
@@ -23,6 +24,7 @@ namespace MahjongSolitaire
     {
         MidiKeyboard _myKeyboard = new MidiKeyboard();
         Random _random = new Random();
+        DispatcherTimer _timer;
         double _tileWidth = 110;
         double _tileHeight = 151;
         double _tileSide = 15;
@@ -34,11 +36,21 @@ namespace MahjongSolitaire
         Tile? _firstTile;
         bool _tileSelected = false;
         bool _soundOn = true;
+        bool _isHinting = false;
+        Tile? _hintTile1;
+        Tile? _hintTile2;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            // initialize timer
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(1200);
+            _timer.Tick += Timer_Tick;
+            //_timer.Start();
         }
+
         #region events
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -131,12 +143,14 @@ namespace MahjongSolitaire
                     }
                 }
 
-                Redraw(remainingTiles);
+                //Redraw(remainingTiles);
+                Redraw(_tiles);
             }
         }
 
         private void Tile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (_isHinting) return;
             Image img = (Image)sender;
             Tile tile = _tiles.First(t => t.TileImage == img);
             // now you have the tile directly
@@ -378,6 +392,8 @@ namespace MahjongSolitaire
             _game.RemoveTile(layer, row, col);
             Table.Children.Remove(t1.TileImage);
             Table.Children.Remove(t2.TileImage);
+            _tiles.Remove(t1);
+            _tiles.Remove(t2);
             PlaySound(115, 49, 100);
             CountMatches();
         }
@@ -462,13 +478,16 @@ namespace MahjongSolitaire
                 }
             }
 
-            if (remainingTiles.Count > 0)
+            //if (remainingTiles.Count > 0)
+            if (_tiles.Count > 0)
             {
                 // shuffle the list
-                Shuffle(remainingTiles);
+                //Shuffle(remainingTiles);
+                Shuffle(_tiles);
 
                 // redraw the tiles
-                Redraw(remainingTiles);
+                //Redraw(remainingTiles);
+                Redraw(_tiles);
                 CountMatches();
             }
         }
@@ -515,7 +534,54 @@ namespace MahjongSolitaire
 
         private void HintButton_Click(object sender, RoutedEventArgs e)
         {
+            List<Tile> openTiles = new List<Tile>();
+            int i;
 
+            // create a list of open tiles
+            for (i = 0; i < _tiles.Count; i++)
+            {
+                _tiles[i].GetPosition(out int layer, out int row, out int col);
+                if (_game.IsOpen(layer, row, col))
+                {
+                    openTiles.Add(_tiles[i]);
+                }
+            }
+
+            // sort the list
+            openTiles.Sort((a, b) =>
+            {
+                int cmp = a.Suit.CompareTo(b.Suit);
+                if (cmp != 0) return cmp;
+                return a.Number.CompareTo(b.Number);
+            });
+
+            // count the matches
+            i = 0;
+            while (i < openTiles.Count - 1)
+            {
+                if (IsMatch(openTiles[i], openTiles[i + 1]))
+                {
+                    _hintTile1 = openTiles[i];
+                    _hintTile2 = openTiles[i + 1];
+                    if (_hintTile1.TileImage != null) _hintTile1.TileImage.Source = _hintTile1.highlighted;
+                    if (_hintTile2.TileImage != null) _hintTile2.TileImage.Source = _hintTile2.highlighted;
+                    _isHinting = true;
+                    _timer.Start();
+                    return;
+                }
+                else
+                    i += 1;
+            }
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            if (_hintTile1 != null && _hintTile1.TileImage != null) _hintTile1.TileImage.Source = _hintTile1.normal;
+            if (_hintTile2 != null && _hintTile2.TileImage != null) _hintTile2.TileImage.Source = _hintTile2.normal;
+            _hintTile1 = null;
+            _hintTile2 = null;
+            _isHinting = false;
+            _timer.Stop();
         }
     }
 }
