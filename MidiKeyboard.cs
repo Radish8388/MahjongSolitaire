@@ -3,9 +3,6 @@
 // Volume is also 0 - 127
 
 using NAudio.Midi;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MahjongSolitaire
 {
