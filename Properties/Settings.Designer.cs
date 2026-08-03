@@ -85,7 +85,7 @@ namespace MahjongSolitaire.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"Normal\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
         public string WindowState {
             get {
                 return ((string)(this["WindowState"]));
